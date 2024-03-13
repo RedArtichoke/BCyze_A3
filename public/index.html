@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Lobby</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Weird favicon issue with NGROK, solved by blocking favicons -->
+    <link rel="icon" href="data:,">
+    <link rel="icon" href="about:blank">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</head>
+
+<body>
+    <!-- Audio files -->
+    <audio id="lose" src="lose.mp3"></audio>
+    <audio id="attack" src="attack.mp3"></audio>
+    <audio id="block" src="blocked.mp3"></audio>
+    <audio id="charge" src="charge.mp3"></audio>
+    <audio id="chargedAttack" src="chargedAttack.mp3"></audio>
+    <audio id="feint" src="feint.mp3"></audio>
+    <audio id="win" src="win.mp3"></audio>
+    <audio id="click" src="click.mp3"></audio>
+
+    <!-- Background Vector-->
+    <div class="background"></div>
+
+    <!-- Player and Lobby status, of which is occluded -->
+    <p id="playerStatus">Checking player slot...</p>
+    <p id="lobbyStatus"></p>
+
+    <!-- Enemy's Health Bar -->
+    <div id="enemyHealthBar" class="health-bar">
+        <div class="health-bar-fill enemy"></div>
+    </div>
+
+    <!-- Enemy Image -->
+    <img id="enemyImage" src="happy.png" alt="Enemy">
+
+    <!-- Win vs lose vs draw panel -->
+    <div id="resultsPanel" class="results" style="display:none;">
+        <p id="resultsMessage"></p>
+        <button id="playAgainButton" onclick="playClick()">Play Again 🎮</button>
+    </div>
+
+    <!-- Ruleset for players to see -->
+    <div id="rules">
+        <h2>Game Rules</h2>
+        <p>Your opponent has 3 health. Your objective is to kill them. Your health bar is green, theirs is red!</p>
+        <ul>
+            <li><strong>Attack</strong> - this deals 1 damage to your opponent.</li>
+            <li><strong>Guard</strong> - blocks the next attack.</li>
+            <li><strong>Feint</strong> - if your opponent doesn't attack you, heals by 1 health.</li>
+            <li><strong>Charge</strong> - makes your next attack deal +1 (or +2 if charged again) damage.</li>
+        </ul>
+        <p>Click to close.</p>
+    </div>
+
+    <!-- Container for holding control buttons -->
+    <div class="ctrls-container">
+        <button id="makeRedButton" style="display:none;" onclick="playClick()">Make Opponent's Screen Red</button>
+        <button id="attackButton" style="display:none;" onclick="playClick()">Attack 🔫</button>
+        <button id="guardButton" style="display:none;" onclick="playClick()">Guard 🛡️</button>
+        <button id="feintButton" style="display:none;" onclick="playClick()">Feint 👊</button>
+        <button id="chargeButton" style="display:none;" onclick="playClick()">Charge 💪</button>
+        <button id="playAgainButton" style="display:none;" onclick="playClick()">Play Again</button>
+    </div>
+
+    <!-- Hidden log for viewing content -->
+    <ul id="activityLog"></ul>
+
+    <!-- Player's Health Bar -->
+    <div id="playerHealthBar" class="health-bar">
+        <div class="health-bar-fill player"></div>
+    </div>
+
+    <!-- Hidden health values -->
+    <div id="playerHealth1">Player 1's Health: 3</div>
+    <div id="playerHealth2">Player 2's Health: 3</div>
+</body>

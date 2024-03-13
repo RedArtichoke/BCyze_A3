@@ -1,0 +1,174 @@
+
+/*
+    Default text, sans-serif
+*/
+html, body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 0;
+    height: 100%;
+    color: rgb(255, 255, 255); 
+    font-weight: bold; 
+}
+
+/*
+    Background image, filling the screen
+*/
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+
+/*
+    Container for the buttons, storing them bottom middle
+*/
+.ctrls-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+    max-width: 60%; 
+    margin: 0 auto; 
+    justify-content: center; 
+    align-items: flex-end;
+    position: fixed;
+    bottom: 10%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 3;
+}
+  
+/*
+    Default buttons, glass containers
+*/
+button {
+    display: block;
+    background-color: rgba(15, 15, 31, 0.3); 
+    backdrop-filter: blur(10px); 
+    color: rgba(225, 241, 247); 
+    font-weight: bold; 
+    padding: 15px 20px;
+    border-radius: 15px; 
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s; 
+    border: none;
+}
+  
+/*
+    Clicked buttons, glowing white
+*/
+button:active,    
+button.selected {
+    color: #16161d; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    box-shadow: 0px 5px 15px rgba(0, 191, 255, 0.5); 
+}
+
+/*
+    Health bar (background) along the top of the screen, glawss 
+*/
+.health-bar {
+    height: 30px;
+    width: 70%;
+    background-color: rgba(15, 15, 31, 0.3);
+    backdrop-filter: blur(10px); 
+    border-radius: 15px;
+    margin: 10px auto;
+    position: relative;
+    z-index: 3;
+}
+
+/*
+    Filled health bar
+*/
+.health-bar-fill {
+    height: 100%;
+    border-radius: 15px;
+    transition: width 0.3s ease;
+    position: inherit;
+    z-index: 4;
+}
+
+/*
+    Player health
+*/
+.health-bar-fill.player {
+    background-color: rgba(95, 224, 123, 0.9);
+}
+
+/*
+    Enemy health
+*/
+.health-bar-fill.enemy {
+    background-color: rgba(224, 87, 98, 0.9);
+}
+
+/*
+    Win vs lose vs draw screen, glass
+*/
+.results {
+    display: none;
+    background-color: rgba(15, 15, 31, 0.3); 
+    backdrop-filter: blur(10px); 
+    color: rgba(225, 241, 247);
+    font-weight: bold; 
+    padding: 15px 20px;
+    border-radius: 15px; 
+    font-size: 16px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: none;
+    z-index: 100;
+}
+
+/*
+    Image responsible for representing the enemy player, centred
+*/
+#enemyImage {
+    display: 'block';
+    width: 50%; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    object-fit: contain; 
+    z-index: 2;
+    position: fixed;
+}
+
+/*
+    Ruleset for the player, glass
+*/
+#rules {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 15px; 
+    transform: translate(-50%, -50%);
+    background-color: rgba(15, 15, 31, 0.3); 
+    backdrop-filter: blur(10px); 
+    color: rgba(225, 241, 247);
+    padding: 20px;
+    z-index: 10; 
+    cursor: pointer; 
+    max-width: 80%; 
+}
+
+/*
+    Left align and indent bullet points in list on rules
+*/
+#rules ul {
+    text-align: left; 
+    padding-left: 20px; 
+}
